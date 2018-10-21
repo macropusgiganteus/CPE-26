@@ -6,54 +6,57 @@ package hw;
 
 public class Stack {
     Node[] arr; // regular array
-    int capacity;
-    int size;
+    int capacity=0;
+    int size=0;
 
-    public Stack(int cap){
+    public Stack(int cap){          // constructor //
         this.capacity = cap;
+        arr = new Node[cap];
     }
     
-    public void push(Node node){
-        if (!isFull()){
-            if(size==0){
-                arr[0] = node;
-            }else{
-                arr[size] = node;
-            }
+    public void push(Node node){    //เพิ่มสมาชิกใน Stack//
+        if (!isFull()){ //ถ้า Stack ไม่เต็ม //
+             arr[size] = node;
              size++;
-        }else{
+        }else{ // ถ้า Stack เต็ม //
             System.out.println("Stack Overflow!!!");
         }
     }
-    public Node pop(){
-        if (!isEmpty()){
-            size--;
-        }else{
+    public Node pop(){ // pop สมาชิกบนสุดออก //
+        if (!isEmpty()){    //ถ้า Stack ไม่ว่าง //      
+            size--;     
+            return arr[size];
+        }else{      //ถ้า Stack ว่าง //
             System.out.println("Stack Underflow!!!");
-        }
-        return null; // fix this (out of place)
+            return null; 
+        }    
     }
-    public boolean isFull(){
-        if(size==capacity){
+       
+        
+    public boolean isFull(){ //เช็ค Stack ว่าเต็มหรือไม่ //
+        if(size==capacity){ //ถ้าสมาชิกเต็ม //
             return true;
         }
-        return false; 
+        else{ //ถ้าสมาชิกไม่เต็ม //
+            return false; 
+        }
+        
     }
-    public boolean isEmpty(){
-        if(size ==0){
+    public boolean isEmpty(){ //เช็คว่า Stack ว่างหรือไม่ //
+        if(size ==0){ // ถ้าStack ว่าง //
             return true;
         }
         return false; 
     }
     
-    public void printStack(){
-        if (!isEmpty()) {
-            System.out.print("[Bottom] ");
-            for(int i=0;i<size;i++){
-                System.out.print(arr[i]);
+    public void printStack(){ //print ค่าของสมาชิกใน Stack //
+        if (!isEmpty()) { //ถ้า Stack ไม่ว่าง //
+            System.out.print("[Bottom] "); 
+            for(int i=0;i<size;i++){ // ไล่ลำดับจากสมาชิกตัวแรกถึงตัวสุดท้าย //
+                System.out.print(arr[i].data+" ");
             }
             System.out.println("[Top]");
-        } else {
+        } else { //ถ้า Stack ว่าง //
             System.out.println("Empty Stack!!!");
         }
     }
